@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 
 import com.github.moduth.blockcanary.BlockCanaryContext;
+import com.github.moduth.blockcanary.BuildConfig;
 
 import java.util.List;
 
@@ -62,13 +63,6 @@ public class AppContext extends BlockCanaryContext {
     @Override
     public boolean displayNotification() {
         return BuildConfig.DEBUG;
-    }
-
-    @Override
-    public List<String> concernPackages() {
-        List<String> list = super.provideWhiteList();
-        list.add("com.example");
-        return list;
     }
 
     @Override
