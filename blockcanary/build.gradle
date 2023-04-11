@@ -56,11 +56,6 @@ afterEvaluate {
         repositories {
             maven {
                 allowInsecureProtocol = true
-                url "http://oceanpark.nioint.com/artifactory/maven"
-                credentials {
-                    username "oceanpark_viewer"
-                    password "AKCp8kq2rfiaMbmaK9RdT8qHviLqvbLUetYTrJx8Hbcb6ZeG8wHFdFoza6KJXnQUUWE6DQRP7"
-                }
             }
         }
     }
