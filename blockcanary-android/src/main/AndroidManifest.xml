@@ -2,6 +2,10 @@
     package="com.github.moduth.blockcanary"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- To store the heap dumps and leak analysis results. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application>
         <activity
             android:name=".ui.DisplayActivity"
@@ -17,5 +21,13 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false">
+            <meta-data
+                android:name="com.github.moduth.blockcanary.analyzer.BlockCanaryStartupInitializer"
+                android:value="@string/androidx_startup" />
+        </provider>
     </application>
 </manifest>

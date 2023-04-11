@@ -15,6 +15,8 @@
  */
 package com.github.moduth.blockcanary.ui;
 
+import java.util.Arrays;
+
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -24,9 +26,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.github.moduth.blockcanary.R;
-import com.github.moduth.blockcanary.internal.BlockInfo;
-
-import java.util.Arrays;
+import com.github.moduth.blockcanary.analyzer.internal.BlockInfo;
 
 final class DetailAdapter extends BaseAdapter {
 

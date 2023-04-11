@@ -1,13 +1,13 @@
 package com.github.moduth.blockcanary.ui;
 
-import android.util.Log;
-
-import com.github.moduth.blockcanary.internal.BlockInfo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+
+import android.util.Log;
+
+import com.github.moduth.blockcanary.analyzer.internal.BlockInfo;
 
 final class BlockInfoEx extends BlockInfo {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 MarkZhai (http://zhaiyifan.cn).
+ * Copyright (C) 2015 Square, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.blockcanary;
+package com.github.moduth.blockcanary.analyzer;
 
-import android.app.Application;
+import java.util.concurrent.ThreadFactory;
 
-public class DemoApplication extends Application {
+/**
+ * This is intended to only be used with a single thread executor.
+ */
+final class SingleThreadFactory implements ThreadFactory {
+
+    private final String threadName;
+
+    SingleThreadFactory(String threadName) {
+        this.threadName = "BlockCanary-" + threadName;
+    }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public Thread newThread(Runnable runnable) {
+        return new Thread(runnable, threadName);
     }
 }

@@ -15,6 +15,14 @@
  */
 package com.github.moduth.blockcanary.ui;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -42,18 +50,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.github.moduth.blockcanary.BlockCanaryContext;
-import com.github.moduth.blockcanary.BlockCanaryInternals;
-import com.github.moduth.blockcanary.LogWriter;
 import com.github.moduth.blockcanary.R;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import com.github.moduth.blockcanary.analyzer.BlockCanaryContext;
+import com.github.moduth.blockcanary.analyzer.BlockCanaryInternals;
+import com.github.moduth.blockcanary.analyzer.LogWriter;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.text.format.DateUtils.FORMAT_SHOW_DATE;
@@ -252,21 +252,9 @@ public class DisplayActivity extends Activity {
             mActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            LogWriter.deleteAll();
-                            mBlockInfoEntries = Collections.emptyList();
-                            updateUi();
-                        }
-                    };
-                    new AlertDialog.Builder(DisplayActivity.this)
-                            .setTitle(getString(R.string.block_canary_delete))
-                            .setMessage(getString(R.string.block_canary_delete_all_dialog_content))
-                            .setPositiveButton(getString(R.string.block_canary_yes), okListener)
-                            .setNegativeButton(getString(R.string.block_canary_no), null)
-                            .show();
-
+                    LogWriter.deleteAll();
+                    mBlockInfoEntries = Collections.emptyList();
+                    updateUi();
                 }
             });
         }

@@ -13,8 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BlockCanary"
-include ':art'
-include ':blockcanary-android-no-op'
-include ':blockcanary-analyzer'
 include ':blockcanary-android'
 include ':blockcanary-sample'
