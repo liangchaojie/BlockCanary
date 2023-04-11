@@ -5,12 +5,10 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
-        minSdk 24
-        targetSdk 31
-
+        minSdk 23
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -29,9 +27,11 @@ dependencies {
 }
 
 
-def myGroupId = "com.nio.media.base"
+def myGroupId = 'com.nio.media.base'
 def myArtifactId = "blockcanary"
 def myDescription = "卡顿检测工具"
+// release版本 正式发布用这个!!!!
+def myVersion = "1.0.1"
 
 afterEvaluate {
     publishing {
@@ -40,15 +40,15 @@ afterEvaluate {
                 from components.release
                 groupId = myGroupId
                 artifactId = myArtifactId
-                version = "1.0.0-test-02"
+                version = myVersion
                 description myDescription
             }
             debug(MavenPublication) {
                 from components.debug
-                // 测试的aar单独放置,测试完成后方便删除
+                // 测试的aar单独放到一个文件夹,测试完成后方便删除
                 groupId = myGroupId + ".debug"
                 artifactId = myArtifactId
-                version = "1.0.0"
+                version = myVersion
                 description myDescription
             }
         }
@@ -56,7 +56,7 @@ afterEvaluate {
         repositories {
             maven {
                 allowInsecureProtocol = true
-                url  "http://oceanpark.nioint.com/artifactory/maven"
+                url "http://oceanpark.nioint.com/artifactory/maven"
                 credentials {
                     username "oceanpark_viewer"
                     password "AKCp8kq2rfiaMbmaK9RdT8qHviLqvbLUetYTrJx8Hbcb6ZeG8wHFdFoza6KJXnQUUWE6DQRP7"

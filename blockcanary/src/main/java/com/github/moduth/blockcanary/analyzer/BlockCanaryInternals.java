@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import android.os.Environment;
 import android.os.Looper;
 
 import com.github.moduth.blockcanary.analyzer.internal.BlockInfo;
@@ -116,15 +115,8 @@ public class BlockCanaryInternals {
     }
 
     static String getPath() {
-        String state = Environment.getExternalStorageState();
-        String logPath = BlockCanaryInternals.getContext()
-            == null ? "" : BlockCanaryInternals.getContext().providePath();
-
-        if (Environment.MEDIA_MOUNTED.equals(state)
-            && Environment.getExternalStorageDirectory().canWrite()) {
-            return Environment.getExternalStorageDirectory().getPath() + logPath;
-        }
-        return getContext().provideContext().getFilesDir() + BlockCanaryInternals.getContext().providePath();
+        String path = getContext().provideContext().getCacheDir() + BlockCanaryInternals.getContext().providePath();
+        return path;
     }
 
     static File detectedBlockDirectory() {

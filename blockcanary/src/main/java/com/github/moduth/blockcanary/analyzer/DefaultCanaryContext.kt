@@ -67,7 +67,7 @@ open class DefaultCanaryContext() : BlockCanaryContext() {
      * @return threshold in mills
      */
     override fun provideBlockThreshold(): Int {
-        return 400
+        return 300
     }
 
     /**
