@@ -31,7 +31,7 @@ dependencies {
 
 def myGroupId = "com.nio.media.base"
 def myArtifactId = "blockcanary"
-def myDescription = "海外媒体中心网络请求框架aar"
+def myDescription = "卡顿检测工具"
 
 afterEvaluate {
     publishing {
