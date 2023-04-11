@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 31
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.startup:startup-runtime:1.0.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
+}
+
+
+def myGroupId = "com.nio.media.base"
+def myArtifactId = "blockcanary"
+def myDescription = "海外媒体中心网络请求框架aar"
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = myGroupId
+                artifactId = myArtifactId
+                version = "1.0.0-test-02"
+                description myDescription
+            }
+            debug(MavenPublication) {
+                from components.debug
+                // 测试的aar单独放置,测试完成后方便删除
+                groupId = myGroupId + ".debug"
+                artifactId = myArtifactId
+                version = "1.0.0"
+                description myDescription
+            }
+        }
+
+        repositories {
+            maven {
+                allowInsecureProtocol = true
+                url  "http://oceanpark.nioint.com/artifactory/maven"
+                credentials {
+                    username "oceanpark_viewer"
+                    password "AKCp8kq2rfiaMbmaK9RdT8qHviLqvbLUetYTrJx8Hbcb6ZeG8wHFdFoza6KJXnQUUWE6DQRP7"
+                }
+            }
+        }
+    }
+}
